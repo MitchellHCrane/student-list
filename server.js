@@ -49,7 +49,7 @@ app.post("/api/student", (req, res) => {
   } else if (name === "jessica") {
     rollbar.critical("you can not add jessica to the list");
     res.status(400).send({ error: "you can not add jessica to the list" });
-  } else if (name === Number) {
+  } else if (name === int) {
     rollbar.warning("you can not add a number");
     res.status(400).send({ error: "you can not add a number" });
   } else {
