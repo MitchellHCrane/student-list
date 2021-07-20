@@ -25,13 +25,16 @@
         axios
           .post("/api/student", { name: nameInput.value })
           .then((res) => {
+            console.log("Response: ", res);
             container.innerHTML = "";
 
             res.data.forEach((studentName) => {
               container.innerHTML += `<p>${studentName}</p>`;
             });
           })
-          .catch((err) => console.log(err));
+          .catch((err) => {
+            console.log("Catch Error: ", err);
+          });
       }
 
       addForm.addEventListener("submit", submitHandler);
