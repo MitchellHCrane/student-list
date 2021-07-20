@@ -1,24 +1,26 @@
 const express = require("express");
 const path = require("path");
 // require rollbar below
-const Rollbar = require("rollbar");
+const Rollbar = require('rollbar')
 // create the Rollbar class below
 const rollbar = new Rollbar({
-  accessToken: "412150db3a4f4c0b90ab19165290b34a",
+  accessToken: '412150db3a4f4c0b90ab19165290b34a',
   captureUncaught: true,
   captureUnhandledRejections: true,
-});
+})
 
 const app = express();
 app.use(express.json());
-app.use(rollbar.errorHandler());
+app.use(rollbar.errorHandler())
+
 
 let studentList = [];
 
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "/public/index.html"));
   // send rollbar some info
-  rollbar.info("html file served successfully");
+  rollbar.info('html file served successfully')
+
 });
 
 app.post("/api/student", (req, res) => {
@@ -32,23 +34,26 @@ app.post("/api/student", (req, res) => {
   if (index === -1 && name !== "") {
     studentList.push(name);
     // add rollbar log here
-    rollbar.log("student added successfully", {
-      author: `${myName}`,
-      type: "manual",
-    });
+    rollbar.log('student added successfully', {author: 'logan', type: 'manual'})
 
     res.status(200).send(studentList);
   } else if (name === "") {
     // add a rollbar error here
-    rollbar.error("no name given");
+    rollbar.error('no name given')
 
     res.status(400).send({ error: "no name was provided" });
-  } else if (name === "Mitchell") {
-    rollbar.error("Mitchell already exists");
+
+  }else if(name === 'Mitch' || name === 'Mitch'){
+    rollbar.error('You can not add Mitch to the list')
+    res.status(400).send({error: 'You cannot add Mitch to the list'})
+
+  } else if(name === 'jessica'){
+    rollbar.critical('you can not add jessica to the list')
+    res.status(400).send({error: 'you can not add jessica to the list'})
   } else {
     // add a rollbar error here too
-    rollbar.critical("student already exists");
-
+    rollbar.error('student already exists')
+    alert('student already exists')
     res.status(400).send({ error: "that student already exists" });
   }
 });
