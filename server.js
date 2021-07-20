@@ -45,7 +45,7 @@ app.post("/api/student", (req, res) => {
     res.status(400).send({ error: "no name was provided" });
   } else if (name === "Mitch" || name === "Mitch") {
     rollbar.warning("You can not add Mitch to the list");
-    res.status(400).send({ error: "You cannot add Mitch to the list" });
+    res.status(400).send("You cannot add Mitch to the list");
   } else if (name === null) {
     rollbar.error("you have to add something to the list");
     res.status(400).send({ error: "you have to add a name to the list" });
