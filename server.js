@@ -53,8 +53,10 @@ app.post("/api/student", (req, res) => {
   } else {
     rollbar.warning("Name already added");
     res.status(400).send("Name already added");
-};
-})
+      // else if (name === null) {
+      //   rollbar.error("you have to add something to the list");
+      //   res.status(400).send({ error: "you have to add a name to the list" });
+});
 
 const port = process.env.PORT || 4545;
 
