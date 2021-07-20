@@ -37,15 +37,15 @@ app.post("/api/student", (req, res) => {
       type: "manual",
     });
     res.status(200).send(studentList);
+  } else if (name === "") {
+    // add a rollbar error here
+    rollbar.error("no name given");
+    res.status(400).send({ error: "no name was provided" });
   } else {
     rollbar.warning("Name already added");
     res.status(400).send("Name already added");
   }
-  // } else if (name === "") {
-  //   // add a rollbar error here
-  //   rollbar.error("no name given");
-  //   res.status(400).send({ error: "no name was provided" });
-  // } else if (name === "Mitch" || name === "Mitch") {
+  // else if (name === "Mitch" || name === "mitch") {
   //   rollbar.warning("You can not add Mitch to the list");
   //   res.status(400).send("You cannot add Mitch to the list");
   // } else if (name === null) {
