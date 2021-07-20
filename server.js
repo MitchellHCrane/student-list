@@ -44,21 +44,17 @@ app.post("/api/student", (req, res) => {
   } else if (name === "Mitch" || name === "mitch") {
     rollbar.critical({ error: "You can not add Mitch to the list" });
     res.status(400).send("You cannot add Mitch to the list");
+  } else if (name === "jessica") {
+    rollbar.critical("you can not add jessica to the list");
+    res.status(400).send({ error: "you can not add jessica to the list" });
   } else {
-    rollbar.warning("Name already added");
-    res.status(400).send("Name already added");
+    rollbar.error("student already exists");
+    alert("student already exists");
+    res.status(400).send({ error: "that student already exists" });
   }
   // else if (name === null) {
   //   rollbar.error("you have to add something to the list");
   //   res.status(400).send({ error: "you have to add a name to the list" });
-  // } else if (name === "jessica") {
-  //   rollbar.critical("you can not add jessica to the list");
-  //   res.status(400).send({ error: "you can not add jessica to the list" });
-  // } else {
-  //   rollbar.error("student already exists");
-  //   alert("student already exists");
-  //   res.status(400).send({ error: "that student already exists" });
-  // }
 });
 
 const port = process.env.PORT || 4545;
