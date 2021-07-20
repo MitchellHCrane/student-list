@@ -16,8 +16,7 @@ let studentList = [];
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "/public/index.html"));
   // send rollbar some info
-  rollbar.info('html file served successfully')
-
+  rollbar.info("html file served successfully");
 });
 
 app.post("/api/student", (req, res) => {
