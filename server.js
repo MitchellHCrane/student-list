@@ -45,17 +45,15 @@ app.post("/api/student", (req, res) => {
     rollbar.critical({ error: "You can not add Mitch to the list" });
     res.status(400).send("You cannot add Mitch to the list");
   } else if (name === "jessica") {
-    rollbar.critical("you can not add jessica to the list");
+    rollbar.critical({ error: "you can not add jessica to the list"});
     res.status(400).send({ error: "you can not add jessica to the list" });
+  } else if (name === Number) {
+    rollbar.error({ error: "Number not a correct input" });
+    res.status(400).send({ "Number not a correct input" });
   } else {
-    rollbar.error("student already exists");
-    alert("student already exists");
-    res.status(400).send({ error: "that student already exists" });
-  }
-  // else if (name === null) {
-  //   rollbar.error("you have to add something to the list");
-  //   res.status(400).send({ error: "you have to add a name to the list" });
-});
+    rollbar.warning("Name already added");
+    res.status(400).send("Name already added");
+};
 
 const port = process.env.PORT || 4545;
 
