@@ -54,6 +54,7 @@ app.post("/api/student", (req, res) => {
     rollbar.warning("Name already added");
     res.status(400).send("Name already added");
 };
+})
 
 const port = process.env.PORT || 4545;
 
