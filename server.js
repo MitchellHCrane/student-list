@@ -49,9 +49,9 @@ app.post("/api/student", (req, res) => {
   } else if (name === "jessica") {
     rollbar.critical("you can not add jessica to the list");
     res.status(400).send({ error: "you can not add jessica to the list" });
-  } else if (name === int) {
-    rollbar.warning("you can not add a number");
-    res.status(400).send({ error: "you can not add a number" });
+  } else if (name === null) {
+    rollbar.warning("warning add a value");
+    res.status(400).send({ error: "warning add a value" });
   } else {
     // add a rollbar error here too
     rollbar.error("student already exists");
