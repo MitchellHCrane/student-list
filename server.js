@@ -45,19 +45,13 @@ app.post("/api/student", (req, res) => {
     rollbar.critical({ error: "You can not add Mitch to the list" });
     res.status(400).send("You cannot add Mitch to the list");
   } else if (name === "jessica") {
-    rollbar.critical({ error: "you can not add jessica to the list"});
+    rollbar.critical("you can not add jessica to the list");
     res.status(400).send({ error: "you can not add jessica to the list" });
-  } else if (name === Number) {
-    rollbar.error({ error: "Number not a correct input" });
-    res.status(400).send({ "Number not a correct input" });
   } else {
     rollbar.warning("Name already added");
     res.status(400).send("Name already added");
-      // else if (name === null) {
-      //   rollbar.error("you have to add something to the list");
-      //   res.status(400).send({ error: "you have to add a name to the list" });
+  }
 });
-
 const port = process.env.PORT || 4545;
 
 // add rollbar errorHandler middleware here
